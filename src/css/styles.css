@@ -392,8 +392,10 @@ button:not(:disabled),
 [type=button]:not(:disabled),
 [type=reset]:not(:disabled),
 [type=submit]:not(:disabled) {
-  cursor: pointer;
+  cursor: default;
 }
+
+
 
 ::-moz-focus-inner {
   padding: 0;
@@ -3627,7 +3629,7 @@ textarea.form-control-lg {
   padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
   font-size: var(--bs-nav-link-font-size);
   font-weight: var(--bs-nav-link-font-weight);
-  color: rgba(0, 0, 0, 1);
+  color: ivory;
   text-decoration: none;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 }
@@ -8147,8 +8149,8 @@ textarea.form-control-lg {
 }
 
 .bg-info {
-  --bs-bg-opacity: 0.5;
-  background-color: rgba(216, 152, 51, var(--bs-bg-opacity)) !important;
+  --bs-bg-opacity: 1;
+  background-color: rgba(19,51,120, var(--bs-bg-opacity)) !important;
 }
 
 .bg-warning {
@@ -11074,6 +11076,18 @@ input[type="checkbox"] {
 
 }
 
+.btn-modify{
+  background-color: rgb(19, 51, 120);
+  color: white;
+  border: none;
+  padding: 5px 8px;
+  border-radius: 5px;
+  opacity: 0.9;
+}
+
+.btn-modify:hover{
+  opacity: 1;
+}
 
 }
 

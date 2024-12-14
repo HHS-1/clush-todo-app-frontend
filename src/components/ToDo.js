@@ -4,6 +4,7 @@ const Todo = ({ handleOpen }) => {
   const [isInProgressVisible, setInProgressVisible] = useState(true);
   const [isCompletedVisible, setCompletedVisible] = useState(true);
   const [events, setEvents] = useState([]); // events를 배열로 설정
+  const [showToast, setShowToast] = useState(false); // 토스트 메시지 상태 관리
 
   const toggleInProgress = () => {
     setInProgressVisible(!isInProgressVisible);
@@ -47,12 +48,37 @@ const Todo = ({ handleOpen }) => {
                     todo.id === id ? { ...todo, status: newStatus } : todo
                 )
             );
+
+            if (newStatus === '완료') {
+                setShowToast(true);
+                setTimeout(() => setShowToast(false), 3000); // 3초 후 자동으로 토스트 닫기
+              }
         }
+        
     }catch(error){
         console.log(error);
         alert('상태변경 실패');
     }
   }
+
+  const showToDoModify = async (id) => {
+    try{
+        const response = await fetch(`http://localhost:8080/to-do/${id}`)
+        const toDoDate = await response.json();
+
+        if(response.status==204){
+            alert('데이터가 존재하지 않습니다.');
+            return null;
+        }else{
+            const event = new CustomEvent('dataFetched', { detail: toDoDate });
+            window.dispatchEvent(event);
+        }
+
+    }catch(error){
+        console.log(error);
+        alert('서버 오류로 인해 데이터를 불러오는 데 실패했습니다.')
+    }
+  } 
 
   return (
     <div>
@@ -75,8 +101,14 @@ const Todo = ({ handleOpen }) => {
             .filter((todo) => todo.status === '진행중')  // 진행중인 할 일만 필터링
             .sort((a, b) => a.priority - b.priority)
             .map((todo) => (
-              <li key={todo.id} style={{fontWeight:'bold'}}>
-                <div><input type="checkbox" checked={todo.status === '완료'}  onClick={()=>changeStatus(todo.id, todo.status)} /> <span class='priority'>{todo.priority}</span> {todo.title}</div>
+              <li key={todo.id} style={{fontWeight:'bold'}} onClick={()=>showToDoModify(todo.id)}>
+                <div>
+                    <input type="checkbox" checked={todo.status === '완료'}  
+                        onClick={(e) => {
+                            e.stopPropagation(); // 이벤트 버블링 방지
+                            changeStatus(todo.id, todo.status);
+                        }} /> 
+                    <span class='priority'>{todo.priority}</span> {todo.title}</div>
                 <div style={{fontWeight:'bold'}}>⁝</div>
               </li>
             ))}
@@ -92,15 +124,40 @@ const Todo = ({ handleOpen }) => {
             .filter((todo) => todo.status === '완료')  // 완료된 할 일만 필터링
             .sort((a, b) => a.priority - b.priority)
             .map((todo) => (
-              <li key={todo.id} style={{fontWeight:'lighter'}}>
+              <li key={todo.id} style={{fontWeight:'lighter'}} onClick={()=>showToDoModify(todo.id)}>
                 <div>
-                    <input type="checkbox" checked={todo.status === '완료'} onClick={()=>changeStatus(todo.id, todo.status)}  /> <span class='priority'>{todo.priority}</span> {todo.title}
+                    <input type="checkbox" checked={todo.status === '완료'} 
+                        onClick={(e) => {
+                            e.stopPropagation(); // 이벤트 버블링 방지
+                            changeStatus(todo.id, todo.status);
+                        }}  /> 
+                    <span class='priority'>{todo.priority}</span> {todo.title}
                 </div>
                 <div style={{fontWeight:'bold'}}>⁝</div>
               </li>
             ))}
         </ul>
       )}
+      {showToast && (
+        <div style={{
+            position: 'fixed', 
+            bottom: showToast ? '20px' : '-100px', 
+            left: '50%', 
+            transform: 'translateX(-50%)', 
+            backgroundColor: 'rgb(19, 51, 120)', 
+            color: 'white', 
+            padding: '10px 20px', 
+            borderRadius: '5px', 
+            boxShadow: '0 2px 5px rgba(0,0,0,0.2)', 
+            transition: 'bottom 0.5s ease, opacity 0.5s ease', 
+            opacity: showToast ? 1 : 0, 
+            zIndex: 1000
+        }}>
+            작업이 완료되었습니다!
+        </div>
+      )}
+
+
     </div>
     
   );

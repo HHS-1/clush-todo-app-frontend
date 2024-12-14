@@ -5,8 +5,10 @@ import '../js/scripts';
 import 'react-calendar/dist/Calendar.css';
 import FetchCalendar from '../components/FetchCalendar';
 import Todo from '../components/ToDo'; 
+import SharedCalendar from '../components/SharedCalendar'
 import TodoModify from '../components/ToDoModify';
 import { HashLink } from "react-router-hash-link";
+import { HiMenu } from 'react-icons/hi';
 
 
 const Main = () => {
@@ -47,6 +49,7 @@ const Main = () => {
             <img
               className="img-fluid img-profile rounded-circle mx-auto mb-2"
               src="/assets/img/profile.jpg"
+              width="60px"
               alt="..."
             />
           </span>
@@ -67,17 +70,22 @@ const Main = () => {
             <li className="nav-item">
               <a
                 className="nav-link js-scroll-trigger"
-                style={{ color: 'rgb(120,93,200)', cursor: 'pointer' }}
+                style={{ color: 'rgb(255,150,150)', cursor: 'pointer' }}
                 onClick={handleOpen}
               >
-                ➕작업 추가
+                + 작업 추가
               </a>
             </li>
             <li className="nav-item"><a className="nav-link js-scroll-trigger" href="#todo">☀️ 오늘 할 일</a></li>
             <li className="nav-item"><a className="nav-link js-scroll-trigger" href="#todo">🪣 관리함</a></li>
             <li className="nav-item">
               <HashLink className="nav-link js-scroll-trigger" to="#calendar">
-              🗓️ 일정 캘린더
+              🗓️ 내 캘린더
+              </HashLink>
+            </li>
+            <li className="nav-item">
+              <HashLink className="nav-link js-scroll-trigger" to="#calendar2">
+              🗓️ 공유 캘린더
               </HashLink>
             </li>
           </ul>
@@ -102,7 +110,7 @@ const Main = () => {
           transition: 'left 0.3s ease',
         }}
       >
-        {isSidebarOpen ? '➖' : '🟰'}
+        {isSidebarOpen ? <HiMenu size={20} color="ivory" /> : <HiMenu size={20} color="black" />}
       </button>
 
       <div className="container-fluid p-0"
@@ -122,6 +130,9 @@ const Main = () => {
         </section>
         <section className="resume-section" id="calendar">
           <FetchCalendar />
+        </section>
+        <section className="resume-section" id="calendar2">
+          <SharedCalendar />
         </section>
       </div>
     </div>
