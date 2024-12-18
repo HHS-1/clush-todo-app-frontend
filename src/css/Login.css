@@ -1,0 +1,72 @@
+/* 기본 스타일 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+
+  
+  .login-container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    margin: 150px auto;
+  }
+  
+  .title {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #193178; /* 시그니처 색상 */
+  }
+  
+  .input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .input:focus {
+    border-color: #193178; /* 포커스 시 시그니처 색상 */
+  }
+  
+  .button-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .button {
+    background-color: #193178; /* 시그니처 색상 */
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    margin: 5px 0;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background-color: #164b98; /* 시그니처 색상의 어두운 톤 */
+  }
+  
+  .register {
+    background-color: #4CAF50; /* 회원가입 버튼은 초록색 */
+  }
+  
+  .register:hover {
+    background-color: #45a049;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
