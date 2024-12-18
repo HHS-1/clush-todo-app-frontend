@@ -48,6 +48,7 @@ const TodoModify = () => {
 
             const response = await fetch(`http://localhost:8080/to-do/${id}`,{
                 method : "PUT",
+                credentials: 'include',
                 headers : {"Content-Type" : "application/json"},
                 body : JSON.stringify(modifyData)
             });

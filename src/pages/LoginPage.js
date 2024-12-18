@@ -9,12 +9,12 @@ const Login = ({ onLoginSuccess }) => {
   const handleLogin = async () => {
     const response = await fetch('http://localhost:8080/user/login', {
       method: 'POST',
+      credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ userId: id, userPassWord: password }),
     });
 
     if (response.ok) {
-      alert('로그인에 성공했습니다.')
       window.location = "/";
     } else {
       alert('로그인에 실패했습니다. 아이디 또는 비밀번호를 확인해주세요.');
@@ -23,8 +23,9 @@ const Login = ({ onLoginSuccess }) => {
   };
 
   const handleRegister = async () => {
-    const response = await fetch('http://localhost:8080/user/signup', {
+    const response = await fetch('http://localhost:8080/user/sign-up', {
       method: 'POST',
+      credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ userId: id, userPassWord: password }),
     });
@@ -42,7 +43,7 @@ const Login = ({ onLoginSuccess }) => {
       <h2 className="title">{isRegistering ? '회원가입' : '로그인'}</h2>
       <input
         type="text"
-        placeholder="아이디"
+        placeholder="이메일"
         value={id}
         onChange={(e) => setUsername(e.target.value)}
         className="input"

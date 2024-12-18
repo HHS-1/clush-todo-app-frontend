@@ -16,7 +16,7 @@ const Todo = ({ handleOpen }) => {
 
   const getTodayToDo = async () => {
     try {
-      const response = await fetch('http://localhost:8080/to-do');
+      const response = await fetch('http://localhost:8080/to-do',{credentials: 'include'});
       console.log(response)
       if(response.status == 204){
         return null;
@@ -39,6 +39,7 @@ const Todo = ({ handleOpen }) => {
         const newStatus = currentStatus === '진행중' ? '완료' : '진행중';
         const response = await fetch(`http://localhost:8080/to-do/${id}`,{
             method : 'PATCH',
+            credentials: 'include',
             headers : {'Content-Type' : 'application/json'},
             body : newStatus
         })
@@ -63,7 +64,7 @@ const Todo = ({ handleOpen }) => {
 
   const showToDoModify = async (id) => {
     try{
-        const response = await fetch(`http://localhost:8080/to-do/${id}`)
+        const response = await fetch(`http://localhost:8080/to-do/${id}`, {credentials: 'include'})
         const toDoDate = await response.json();
 
         if(response.status==204){

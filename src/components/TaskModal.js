@@ -47,6 +47,7 @@ const TaskModal = ({ show, handleClose }) => {
     try {
       const response = await fetch("http://localhost:8080/to-do", {
         method: "POST",
+        credentials: "include",
         body: JSON.stringify(formData),
         headers : {
             'Content-Type' : "application/json"

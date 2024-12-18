@@ -30,6 +30,15 @@ const Main = () => {
     setDate(value);
   };
 
+  const logout = ()=>{
+    fetch('http://localhost:8080/user/logout',{credentials:'include'})
+    .then(response=>{
+      localStorage.clear();
+      window.location.href="/login"
+    })
+    .catch(error=>console.log(error))
+  }
+
   return (
     <div id="main">
       <TaskModal show={showModal} handleClose={handleClose} />
@@ -73,7 +82,7 @@ const Main = () => {
                 style={{ color: 'rgb(255,150,150)', cursor: 'pointer' }}
                 onClick={handleOpen}
               >
-                + 작업 추가
+                + 내 작업 추가
               </a>
             </li>
             <li className="nav-item"><a className="nav-link js-scroll-trigger" href="#todo">☀️ 오늘 할 일</a></li>
@@ -87,6 +96,9 @@ const Main = () => {
               <HashLink className="nav-link js-scroll-trigger" to="#calendar2">
               🗓️ 공유 캘린더
               </HashLink>
+            </li>
+            <li className="nav-item">
+            <div className="nav-link js-scroll-trigger" onClick={logout} style={{cursor:'pointer'}}>🔚 로그아웃</div>
             </li>
           </ul>
         </div>
@@ -132,7 +144,7 @@ const Main = () => {
           <FetchCalendar />
         </section>
         <section className="resume-section" id="calendar2">
-          <SharedCalendar />
+          <SharedCalendar handleOpen={handleOpen} />
         </section>
       </div>
     </div>

@@ -15,7 +15,7 @@ const FetchCalendar = () => {
 
         const requestUrl = `http://localhost:8080/calendar/${year}-${month < 10 ? '0' + month : month}`;
   
-        const response = await fetch(requestUrl); 
+        const response = await fetch(requestUrl, {credentials: 'include',}); 
 
         if(response.ok){
             const data = await response.json();

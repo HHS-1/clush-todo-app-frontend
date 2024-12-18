@@ -1,6 +1,6 @@
 .react-calendar__tile {
     width: 50px;
-    height: 100px;
+    height: 95px;
     font-size: 12px;
     text-align: left;
     display: flex;
@@ -64,3 +64,116 @@
   color: #333; /* 글자색 */
   font-weight: bold; /* 글자 강조 */
 }
+/* calendarStyle.css */
+.modal2 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content2 {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 300px;
+  text-align: center;
+}
+
+
+/* 캘린더 선택 화면 */
+.calendar-selection {
+  padding: 2rem;
+  text-align: center;
+}
+
+.calendar-title {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+/* 캘린더 목록 스타일 */
+.calendar-list {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.calendar-item {
+  list-style-type: none;
+}
+
+.calendar-button {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.calendar-button:hover {
+  background-color: #45a049;
+}
+
+.add-calendar-button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #008cba;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+.add-calendar-button:hover {
+  background-color: #007bb5;
+}
+
+/* 모달 스타일 */
+
+.calendar-input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  width: 100%;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.save-button,
+.cancel-button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-top: 1rem;
+}
+
+.save-button:hover {
+  background-color: #45a049;
+}
+
+.cancel-button {
+  background-color: #f44336;
+}
+
+.cancel-button:hover {
+  background-color: #e53935;
+}
+
