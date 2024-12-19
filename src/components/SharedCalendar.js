@@ -68,7 +68,6 @@ const SharedCalendar = () => {
       });
 
       if (response.ok) {
-        handleCalendarSelection(null);
         window.location.reload();
       } else {
         console.error('Failed to create calendar');
