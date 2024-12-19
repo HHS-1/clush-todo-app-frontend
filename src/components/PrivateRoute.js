@@ -6,7 +6,7 @@ const PrivateRoute = ({ children }) => {
 
   useEffect(() => {
     // 로그인 상태를 서버에서 확인 (예: 토큰이나 세션 검사)
-    fetch('http://localhost:8080/user/check', { credentials: 'include' })
+    fetch('http://localhost:8081/user/check', { credentials: 'include' })
       .then((response) =>  response.ok ? setIsAuthenticated(true) : setIsAuthenticated(false))
       .catch(() => setIsAuthenticated(false));
   }, []);

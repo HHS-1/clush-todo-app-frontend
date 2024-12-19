@@ -46,7 +46,7 @@ const TodoModify = () => {
                 priority : priority,
             }
 
-            const response = await fetch(`http://localhost:8080/to-do/${id}`,{
+            const response = await fetch(`http://localhost:8081/to-do/${id}`,{
                 method : "PUT",
                 credentials: 'include',
                 headers : {"Content-Type" : "application/json"},

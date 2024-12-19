@@ -33,7 +33,7 @@ const SharedCalendar = () => {
   useEffect(() => {
     const fetchCalendars = async () => {
       try {
-        const response = await fetch('http://localhost:8080/shared', {
+        const response = await fetch('http://localhost:8081/shared', {
           method: 'GET',
           headers: { 'Content-Type': 'application/json' },
           credentials: 'include',
@@ -60,7 +60,7 @@ const SharedCalendar = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:8080/shared', {
+      const response = await fetch('http://localhost:8081/shared', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: newCalendarName, 
@@ -113,7 +113,7 @@ const SharedCalendar = () => {
     };
 
     try {
-      const response = await fetch(`http://localhost:8080/shared/${currentCalendar}`, {
+      const response = await fetch(`http://localhost:8081/shared/${currentCalendar}`, {
         method: "POST",
         credentials: "include",
         body: JSON.stringify(formData),
@@ -137,7 +137,7 @@ const SharedCalendar = () => {
 
   async function refreshCalendarSection() {
     try {
-      const response = await fetch(`http://localhost:8080/shared/${currentCalendar}`, {
+      const response = await fetch(`http://localhost:8081/shared/${currentCalendar}`, {
         method: "GET",
         credentials: "include",
       });
@@ -172,7 +172,7 @@ const SharedCalendar = () => {
 
   const sendEmail = async () =>{
     try{
-      const response = await fetch(`http://localhost:8080/email/${currentCalendar}`,{
+      const response = await fetch(`http://localhost:8081/email/${currentCalendar}`,{
         method:"POST",
         credentials:'include',
         headers:{

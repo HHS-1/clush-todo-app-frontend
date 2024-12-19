@@ -7,7 +7,7 @@ const Login = ({ onLoginSuccess }) => {
   const [isRegistering, setIsRegistering] = useState(false); // 회원가입 모드 여부
 
   const handleLogin = async () => {
-    const response = await fetch('http://localhost:8080/user/login', {
+    const response = await fetch('http://localhost:8081/user/login', {
       method: 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
@@ -23,7 +23,7 @@ const Login = ({ onLoginSuccess }) => {
   };
 
   const handleRegister = async () => {
-    const response = await fetch('http://localhost:8080/user/sign-up', {
+    const response = await fetch('http://localhost:8081/user/sign-up', {
       method: 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },

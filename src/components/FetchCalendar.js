@@ -13,7 +13,7 @@ const FetchCalendar = () => {
         const year = value.getFullYear();  
         const month = value.getMonth() + 1;  
 
-        const requestUrl = `http://localhost:8080/calendar/${year}-${month < 10 ? '0' + month : month}`;
+        const requestUrl = `http://localhost:8081/calendar/${year}-${month < 10 ? '0' + month : month}`;
   
         const response = await fetch(requestUrl, {credentials: 'include',}); 
 

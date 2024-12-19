@@ -31,7 +31,7 @@ const Main = () => {
   };
 
   const logout = ()=>{
-    fetch('http://localhost:8080/user/logout',{credentials:'include'})
+    fetch('http://localhost:8081/user/logout',{credentials:'include'})
     .then(response=>{
       localStorage.clear();
       window.location.href="/login"
@@ -86,7 +86,6 @@ const Main = () => {
               </a>
             </li>
             <li className="nav-item"><a className="nav-link js-scroll-trigger" href="#todo">☀️ 오늘 할 일</a></li>
-            <li className="nav-item"><a className="nav-link js-scroll-trigger" href="#todo">🪣 관리함</a></li>
             <li className="nav-item">
               <HashLink className="nav-link js-scroll-trigger" to="#calendar">
               🗓️ 내 캘린더
