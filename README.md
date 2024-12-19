@@ -1,70 +1,75 @@
-# Getting Started with Create React App
+# 프로젝트명: [ClushTodoApp - backend]  with Spring Boot 3.4.0
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 1. 자신이 개발한 앱에 대한 설명
 
-## Available Scripts
+**ClushTodoApp**은 개인적인 용도로도 사용 가능하며, 팀 또는 그룹 등 공용으로도 활용할 수 있는 다목적 캘린더 웹 애플리케이션입니다. 사용자는 날짜별로 할 일을 추가하고 관리할 수 있으며, 직관적인 캘린더 UI를 통해 일정을 한 눈에 쉽게 확인할 수 있습니다.
 
-In the project directory, you can run:
+또한, 가입한 사용자 간에 캘린더를 공유할 수 있는 기능을 제공하여, 공유된 캘린더를 바탕으로 일정을 손쉽게 관리하고 협업할 수 있습니다. 개인의 일정뿐만 아니라, 팀원들과의 일정 조율이 필요한 경우에도 유용한 기능을 제공합니다.
 
-### `npm start`
+**🚩프론트 및 백엔드 모두 배포를 완료하였습니다.
+http://34.64.133.198/
+주소로 이동해 확인하실 수 있습니다.🚩**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**주요 기능**:
+- **ToDo**: 제목, 내용, 날짜, 우선순위, 진행상태로 이루어진 ToDo데이터를 생성, 조회, 수정할 수 있습니다. 
+- **캘린더(개인)**: ToDo를 생성함에 따라 캘린더에 표시가 되며, 우선순위에 따라 색이 다르게 표시됩니다.
+- **캘린더(공유)**: 이메일을 통해 가입자를 초대하며, 공유 작업자와 함께 캘린더의 날짜 칸을 클릭하여 작업을 추가할 수 있습니다.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 기술 스택
+- **React 19.0.0**
+- **node.js**
+- **ES8**
+- **HTML5**
+- **CSS**
 
-### `npm test`
+## 2. 소스 빌드 및 실행 방법 메뉴얼(로컬)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Git Clone**:
+   ```bash
+   git clone https://github.com/HHS-1/clush-todo-app-frontend.git
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. **프로젝트 실행**
+   ```bash
+   npm install   // 의존성 설치
+   npm start // 어플리케이션 실행
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   http://localhost:3000 접속
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. **백엔드와 함께 실행**
 
-### `npm run eject`
+## 3. 주력으로 사용한 컴포넌트에 대한 설명 및 사용 이유
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 1. `Calendar` (react-calendar)
+- **용도**: 날짜 선택 및 이벤트 표시
+- **사용 이유**: 직관적인 날짜 인터페이스, 공유 캘린더 기능 구현 위함
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 2. `Modal` (react-bootstrap)
+- **용도**: 작업 추가 및 수정 모달
+- **사용 이유**: Todo 일정 추가 및 수정 등에 사용하기 위함
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 3. `Editor` (toast-ui/react-editor)
+- **용도**: 일정 및 할 일 텍스트 편집
+- **사용 이유**: 세련되고 다양한 Todo 작업 생성을 위함.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 4. `Button` (react-bootstrap)
+- **용도**: 작업 추가/삭제 버튼
+- **사용 이유**: 스타일 일관성, 클릭 이벤트 처리 용이
 
-## Learn More
+### 5. `TaskModal` (사용자 정의)
+- **용도**: 할일 추가 및 수정
+- **사용 이유**: 할일 작업을 모달로 쉽게 입력/수정 가능
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 6. `SharedCalendar` (사용자 정의)
+- **용도**: 캘린더 데이터 서버에서 가져오기
+- **사용 이유**: 공유 캘린더 구현 위함, 개인 캘린더와 분리
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 7. `Todo` (사용자 정의)
+- **용도**: 할 일 목록 관리
+- **사용 이유**: 할 일 추가/완료/삭제 관리 용이
 
-### Code Splitting
+### 8. `HiMenu` 아이콘 (react-icons/hi)
+- **용도**: 메뉴 버튼 아이콘
+- **사용 이유**: 직관적이고 스타일링 쉬운 아이콘
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
