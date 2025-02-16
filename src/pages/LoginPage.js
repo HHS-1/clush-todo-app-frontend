@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import '../css/Login.css'; // CSS 파일을 import
 
 const Login = ({ onLoginSuccess }) => {
@@ -6,7 +6,20 @@ const Login = ({ onLoginSuccess }) => {
   const [password, setPassword] = useState('');
   const [isRegistering, setIsRegistering] = useState(false); // 회원가입 모드 여부
 
+  useEffect(() => {
+    document.body.classList.add('login-page');
+    return () => {
+      document.body.classList.remove('login-page');
+    };
+  }, []);
+
+  // 로그인 처리
   const handleLogin = async () => {
+    if (!id || !password) {
+      alert('아이디와 비밀번호를 입력해주세요.');
+      return;
+    }
+
     const response = await fetch('http://localhost:8081/user/login', {
       method: 'POST',
       credentials: 'include',
@@ -18,11 +31,21 @@ const Login = ({ onLoginSuccess }) => {
       window.location = "/";
     } else {
       alert('로그인에 실패했습니다. 아이디 또는 비밀번호를 확인해주세요.');
-      return false;
     }
   };
 
+  // 회원가입 처리
   const handleRegister = async () => {
+    if (!id || !password) {
+      alert('아이디와 비밀번호를 입력해주세요.');
+      return;
+    }
+
+    if (password.length < 6) {
+      alert('비밀번호는 최소 6자 이상이어야 합니다.');
+      return;
+    }
+
     const response = await fetch('http://localhost:8081/user/sign-up', {
       method: 'POST',
       credentials: 'include',

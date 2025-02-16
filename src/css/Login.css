@@ -5,7 +5,11 @@
     box-sizing: border-box;
   }
   
-
+  body.login-page {
+    margin: 0;
+    padding: 0;
+    /* 다른 스타일들 */
+  }
   
   .login-container {
     background-color: white;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/styles.css';
 import TaskModal from '../components/TaskModal';
 import '../js/scripts';
@@ -9,7 +9,6 @@ import SharedCalendar from '../components/SharedCalendar'
 import TodoModify from '../components/ToDoModify';
 import { HashLink } from "react-router-hash-link";
 import { HiMenu } from 'react-icons/hi';
-
 
 const Main = () => {
   const [showModal, setShowModal] = useState(false);
@@ -25,9 +24,29 @@ const Main = () => {
   };
 
   const [date, setDate] = useState(new Date()); // 선택된 날짜 상태 관리
-
   const handleDateChange = (value) => {
     setDate(value);
+  };
+
+  // 로컬 스토리지에서 이미지 불러오기
+  const [profileImage, setProfileImage] = useState(() => {
+    const savedImage = localStorage.getItem('profileImage');
+    return savedImage ? savedImage : '/assets/img/profile.png'; // 기본 이미지
+  });
+
+  // 프로필 이미지 업로드 처리
+  const handleProfileImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const imageUrl = reader.result;
+        setProfileImage(imageUrl);
+        // 로컬 스토리지에 이미지 URL 저장
+        localStorage.setItem('profileImage', imageUrl);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const logout = ()=>{
@@ -55,12 +74,22 @@ const Main = () => {
         <a className="navbar-brand js-scroll-trigger" href="#page-top">
           <span className="d-block d-lg-none">Clarence Taylor</span>
           <span className="d-none d-lg-block">
-            <img
-              className="img-fluid img-profile rounded-circle mx-auto mb-2"
-              src="/assets/img/profile.jpg"
-              width="60px"
-              alt="..."
+            <input
+              type="file"
+              accept="image/*"
+              style={{ display: 'none' }}
+              id="profileImageInput"
+              onChange={handleProfileImageChange}
             />
+            <label htmlFor="profileImageInput" style={{ cursor: 'pointer' }}>
+              <img
+                className="img-fluid img-profile rounded-circle mx-auto mb-2"
+                src={profileImage}
+                width="100px"
+                height="100px"
+                alt="Profile"
+              />
+            </label>
           </span>
         </a>
         <button
@@ -85,7 +114,7 @@ const Main = () => {
                 + 내 작업 추가
               </a>
             </li>
-            <li className="nav-item"><a className="nav-link js-scroll-trigger" href="#todo">☀️ 오늘 할 일</a></li>
+            <li className="nav-item"><a className="nav-link js-scroll-trigger" href="#todo">☀️ 할 일</a></li>
             <li className="nav-item">
               <HashLink className="nav-link js-scroll-trigger" to="#calendar">
               🗓️ 내 캘린더
@@ -104,7 +133,6 @@ const Main = () => {
       </nav>
 
       {/* 사이드바 열고 닫기 버튼 */}
-
       <button
         onClick={toggleSidebar}
         className="sidebar-toggle-btn"
@@ -132,12 +160,12 @@ const Main = () => {
       >
         {/* Todo 컴포넌트 추가 */}
         <section className="resume-section" id="todo">
-        <div className="todo-container first-section">
-          <Todo handleOpen={handleOpen} />
-        </div>
-        <div className="todo-modify-container">
-          <TodoModify />
-        </div>
+          <div className="todo-container first-section">
+            <Todo handleOpen={handleOpen} />
+          </div>
+          <div className="todo-modify-container">
+            <TodoModify />
+          </div>
         </section>
         <section className="resume-section" id="calendar">
           <FetchCalendar />
